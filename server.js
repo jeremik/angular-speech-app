@@ -1,8 +1,11 @@
 const express = require('express');
-const path = require('path');
+
 const app = express();
-app.use(express.static(__dirname + '/dist/speech-management-app'));
-app.get('/*', function(req,res) {
-res.sendFile(path.join(__dirname+
-'/dist/speech-management-app/index.html'));});
+
+app.use(express.static('./dist/speech-management-app'));
+
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/speech-management-app/'}),
+);
+
 app.listen(process.env.PORT || 8080);
