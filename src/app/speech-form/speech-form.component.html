@@ -1,0 +1,162 @@
+<div id="speech-form">
+  <form [formGroup]="speechForm">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="form-control-label">Title</label>
+          <input formControlName="title" type="text" class="form-control" placeholder="Title"
+            [attr.disabled]="checkAddedby() ? '' : null">
+        </div>
+        <div *ngIf="checkSpeechFormField('title')" class="alert alert-danger">
+          Speech Title is required.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="form-control-label">Speech</label>
+          <textarea formControlName="speech" class="form-control" rows="5" placeholder="Speech"
+            [attr.disabled]="checkAddedby() ? '' : null"></textarea>
+        </div>
+        <div *ngIf="checkSpeechFormField('speech')" class="alert alert-danger">
+          Speech is required.
+        </div>
+        <div *ngIf="checkFieldLength('speech')" class="alert alert-danger">
+          Speech must be at least 15 characters long.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-12">
+        <div class="form-group">
+          <label class="form-control-label">Author</label>
+          <input formControlName="author" type="text" class="form-control" placeholder="Author"
+            [attr.disabled]="checkAddedby() ? '' : null">
+        </div>
+        <div *ngIf="checkSpeechFormField('author')" class="alert alert-danger">
+          Author is required.
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="form-group">
+          <label class="form-control-label">Keywords</label>
+          <input formControlName="keyword" type="text" class="form-control" placeholder="Keywords"
+            [attr.disabled]="checkAddedby() ? '' : null">
+        </div>
+        <div *ngIf="checkSpeechFormField('keyword')" class="alert alert-danger">
+          Keyword is required.
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <div class="form-group">
+          <label class="form-control-label">Date</label>
+          <input formControlName="date" type="date" class="form-control" [attr.disabled]="checkAddedby() ? '' : null">
+        </div>
+        <div *ngIf="checkSpeechFormField('date')" class="alert alert-danger">
+          Date is required.
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12 action-option">
+      <ng-template [ngIf]="IsEditing" [ngIfElse]="adding">
+        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#confirmationModal"
+          (click)="confirmationAction('delete')" [disabled]="!this.speechForm.valid"
+          [hidden]="checkAddedby()">Delete</button>
+        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal"
+          data-target="#confirmationModal" (click)="confirmationAction('update')" [disabled]="!this.speechForm.valid"
+          [hidden]="checkAddedby()">Save</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#sendEmail">
+          Share
+        </button>
+      </ng-template>
+      <ng-template #adding>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="resetForm()">Clear</button>
+        <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!this.speechForm.valid"
+          data-toggle="modal" data-target="#confirmationModal" (click)="confirmationAction('add')">Create</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- ADD Modal -->
+<div class="modal fade" id="confirmationModal">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{modalConfirmationDetail.titleHeader}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        {{modalConfirmationDetail.bodayMessage}}
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="modalConfirmationDetail.action === 'add'" type="button" class="btn btn-outline-success btn-sm"
+          data-dismiss="modal" (click)="addSpeech()">Save</button>
+        <button *ngIf="modalConfirmationDetail.action === 'update'" type="button" class="btn btn-outline-success btn-sm"
+          data-dismiss="modal" (click)="updateSpeech()">Update</button>
+        <button *ngIf="modalConfirmationDetail.action === 'delete'" type="button" class="btn btn-outline-success btn-sm"
+          data-dismiss="modal" (click)="deleteSpeech()">Delete</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEND EMAIL Modal -->
+<div class="modal fade" id="sendEmail">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Share</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="emailForm">
+              <div class="input-group">
+                <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                <button type="button" class="btn btn-outline-info"
+                  [disabled]="emailForm.get('email').hasError('required') || emailForm.controls.email.errors?.pattern"
+                  (click)="addEmailToSend()">Add
+                </button>
+              </div>
+              <div *ngIf="emailForm.controls.email.errors?.pattern" class="alert alert-danger">
+                Email is Invalid.
+              </div>
+              <div *ngIf="isEmailAlreadyAdded()" class="alert alert-info">
+                Email already added.
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row email-table-list">
+          <div class="col-12">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let email of emailSendList; let i = index;">
+                  <td>{{email}}</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-danger btn-sm pull-right btn-remove-email btn-sm"
+                      (click)="removeFormEmailSendList(i)">x</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"
+          (click)="clearEmailForm()">Cancel</button>
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="shareSpeech()"
+          data-dismiss="modal">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

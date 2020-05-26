@@ -1,0 +1,13 @@
+.search-row {
+  margin-bottom: 10px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #007bff80;
+  color: #f8f9fa;
+}
+
+.table-responsive {
+  height: 70vh;
+  overflow: auto;
+}

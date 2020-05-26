@@ -1,0 +1,62 @@
+.default, .speech-list {
+  border: solid 1px #007bff50;
+  border-radius: 5px;
+
+  a:hover {
+    background-color: #007bff80;
+    color: #f8f9fa;
+    border-radius: unset;
+  }
+}
+
+.speech-list {
+  height: 46.5vh;
+  padding: 0;
+  overflow: auto;
+}
+
+.title-list {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  // border: none;
+}
+
+.form-control-label {
+  background: #343a40;
+  height: 3rem;
+  color: #f8f9fa;
+  font-weight: 500;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.list-group-item{
+  border: none;
+  border-bottom: solid 1px #007bff50;
+  color: rgba(0, 123, 255, .8);
+}
+
+.default {
+  height: 76vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h6{
+    color: rgba(0, 123, 255, .8);
+  }
+}
+
+@media (max-width: 425px) {
+  .speech-list{
+    height: 23vh;
+    margin-bottom: 1rem;
+  }
+
+  .default{
+    height: 40vh;
+  }
+ }

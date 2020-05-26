@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-4">
+    <label class="form-control-label">My Speech List</label>
+    <div class="speech-list">
+      <div class="list-group" *ngFor="let speech of mySpeechList; let i = index">
+        <a class="list-group-item title-list" (click)="showSpeech(i)">{{speech.title}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="speech-view">
+      <ng-template [ngIf]="selectedSpeech" [ngIfElse]="default">
+        <app-speech-form
+        [action]="'showMySpeech'"
+        [selectedSpeech]="selectedSpeech"
+        (updateData)="setUpdateSpeechList($event)"></app-speech-form>
+      </ng-template>
+      <ng-template #default>
+        <div class="default">
+          <h6>Select Speech To Show Details</h6>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

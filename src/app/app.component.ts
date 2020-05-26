@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'speechManagementApp';
+  public activeTab = 'mySpeech';
+
+  public setTab(tab) {
+    this.activeTab = tab;
+  }
 }

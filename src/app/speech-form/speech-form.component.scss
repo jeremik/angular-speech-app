@@ -1,0 +1,54 @@
+#speech-form {
+  margin-bottom: 5rem;
+  .form-control {
+    border: 1px solid rgba(0,123,255,.5);;
+  }
+
+  .form-control-label{
+    color: #007bff;
+    font-weight: 500;
+    font-size: 13px;
+    margin: 0;
+  }
+
+  textarea {
+    height: 40vh;
+  }
+
+  .action-option {
+    display: flex;
+    justify-content: flex-end;
+    button{
+      margin-left: 5px;
+    }
+  }
+}
+
+.alert {
+  padding: 0.3rem;
+}
+
+.modal-dialog {
+  .input-group {
+    margin-bottom: 8px;
+  }
+  .email-table-list {
+    margin-top: 1rem;
+    max-height: 20rem;
+    overflow: auto;
+
+    .btn-remove-email {
+      float: right;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  #speech-form{
+    textarea {
+      height: 20vh;
+    }
+  }
+ }
+
+

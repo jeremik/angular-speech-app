@@ -1,0 +1,20 @@
+.tab-content {
+  .container {
+    padding: 0;
+  }
+}
+
+.nav {
+  flex-wrap: nowrap;
+}
+.nav-item {
+  text-align: center;
+}
+.app-name {
+  margin: 10px 0px;
+  color: rgba(0, 123, 255, 6);
+}
+.fixed-bottom {
+  background: #87beff;
+  height: 6vh;
+}

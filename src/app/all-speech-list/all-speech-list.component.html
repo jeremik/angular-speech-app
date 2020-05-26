@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row search-row">
+    <form>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="searchKey" [(ngModel)]="searchKey">
+        <button type="button" class="btn btn-outline-info" (click)="search()">search</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Title</th>
+              <th>keyword</th>
+              <th>Author</th>
+              <th>Date</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let speech of speechList; let i = index;" data-toggle="modal"
+            data-target="#showSpeech" (click)="showSpeech(i)">
+              <td>{{speech.title}}</td>
+              <td>{{speech.keyword}}</td>
+              <td>{{speech.author}}</td>
+              <td>{{speech.date}}</td>
+              <!-- <td>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
+                  data-target="#showSpeech" (click)="showSpeech(i)">Read
+                </button>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade bs-modal-backdrop" id="showSpeech">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <app-speech-form [action]="'showMySpeech'" [selectedSpeech]="selectedSpeech"
+              (updateData)="setUpdateSpeechList($event)">
+            </app-speech-form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
