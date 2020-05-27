@@ -51,6 +51,16 @@
   }
 }
 
+@media (max-width: 500px) {
+  .speech-list{
+    height: 25vh;
+  }
+
+  .default{
+    height: 35vh;
+  }
+ }
+
 @media (max-width: 425px) {
   .speech-list{
     height: 23vh;
