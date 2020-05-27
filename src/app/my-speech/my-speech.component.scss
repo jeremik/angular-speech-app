@@ -13,6 +13,7 @@
   height: 46.5vh;
   padding: 0;
   overflow: auto;
+  margin-bottom: 1rem;
 }
 
 .title-list {
@@ -53,7 +54,6 @@
 @media (max-width: 425px) {
   .speech-list{
     height: 23vh;
-    margin-bottom: 1rem;
   }
 
   .default{

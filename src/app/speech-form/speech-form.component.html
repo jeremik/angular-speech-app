@@ -51,7 +51,7 @@
       <div class="col-md-4 col-12">
         <div class="form-group">
           <label class="form-control-label">Date</label>
-          <input formControlName="date" type="date" class="form-control" [attr.disabled]="checkAddedby() ? '' : null">
+          <input formControlName="date" type="date" class="form-control" placeholder="dd/mm/yyyy" [attr.disabled]="checkAddedby() ? '' : null">
         </div>
         <div *ngIf="checkSpeechFormField('date')" class="alert alert-danger">
           Date is required.
@@ -155,7 +155,7 @@
         <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"
           (click)="clearEmailForm()">Cancel</button>
         <button type="button" class="btn btn-outline-success btn-sm" (click)="shareSpeech()"
-          data-dismiss="modal">Send</button>
+          data-dismiss="modal" [disabled]="emailSendList.length === 0">Send</button>
       </div>
     </div>
   </div>
