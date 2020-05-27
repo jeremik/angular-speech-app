@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SpeechService } from '../service/speech.service';
-import {NotificationToasterService} from '../service/notification-toaster.service';
+import { SpeechService } from 'src/app/service/speech.service';
+import { NotificationToasterService } from 'src/app/service/notification-toaster.service';
 
 @Component({
   selector: 'app-speech-form',
