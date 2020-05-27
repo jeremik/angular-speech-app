@@ -1,5 +1,5 @@
 #speech-form {
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
   .form-control {
     border: 1px solid rgba(0,123,255,.5);;
   }
@@ -43,7 +43,7 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 575px) {
   #speech-form{
     textarea {
       height: 20vh;

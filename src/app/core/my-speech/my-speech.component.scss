@@ -51,22 +51,12 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 575px) {
   .speech-list{
-    height: 25vh;
+    height: 26vh;
   }
 
   .default{
-    height: 35vh;
-  }
- }
-
-@media (max-width: 425px) {
-  .speech-list{
-    height: 23vh;
-  }
-
-  .default{
-    height: 35vh;
+    height: 20vh;
   }
  }
